@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>CareerPilot AI Dashboard</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/dashboard.css') }}">
+
+    <script defer src="{{ url_for('static', filename='js/dashboard.js') }}"></script>
+
+</head>
+
+<body>
+
+    <!-- Navigation -->
+
+    <nav class="navbar">
+
+        <div class="logo">
+            🎓 CareerPilot AI
+        </div>
+
+        <div class="nav-right">
+
+            <button id="darkModeBtn">
+                🌙
+            </button>
+
+            <div class="profile">
+
+                👤 Tulaja Naik
+
+            </div>
+
+        </div>
+
+    </nav>
+
+    <!-- Sidebar -->
+
+    <aside class="sidebar">
+
+        <h2>Menu</h2>
+
+        <ul>
+
+            <li>🏠 Dashboard</li>
+
+            <li>📄 Resume</li>
+
+            <li>🎯 Job Match</li>
+
+            <li>💼 Interview</li>
+
+            <li>📚 Roadmap</li>
+
+            <li>📊 Analytics</li>
+
+            <li>⚙ Settings</li>
+
+        </ul>
+
+    </aside>
+
+    <!-- Main Content -->
+
+    <main class="content">
+
+        <!-- Hero -->
+
+        <section class="hero">
+
+            <h1>Welcome, Tulaja 👋</h1>
+
+            <p>Your AI Career Mentor Dashboard</p>
+
+        </section>
+
+        <!-- Cards -->
+
+        <section class="cards">
+
+            <div class="card">
+
+                <h2>📊 ATS Score</h2>
+
+                <div class="score">
+                    {{ score }}/100
+                </div>
+
+                <div class="progress">
+
+                    <div class="progress-fill" style="width:{{ score }}%"></div>
+
+                </div>
+
+            </div>
+
+            <div class="card">
+
+                <h2>🎯 Job Match</h2>
+
+                <div class="score">
+                    {{ job_match }}%
+                </div>
+
+                <div class="progress">
+
+                    <div class="progress-fill" style="width:{{ job_match }}%"></div>
+
+                </div>
+
+            </div>
+
+            <div class="card">
+
+                <h2>🏆 Resume Strength</h2>
+
+                <h1>Excellent</h1>
+
+            </div>
+
+        </section>
+
+        <!-- Skills -->
+
+        <section class="grid">
+
+            <div class="card">
+
+                <h2>✅ Skills Found</h2>
+
+                <ul>
+
+                    {% for skill in skills %}
+
+                    <li>✔ {{ skill }}</li>
+
+                    {% endfor %}
+
+                </ul>
+
+            </div>
+
+            <div class="card">
+
+                <h2>❌ Missing Skills</h2>
+
+                <ul>
+
+                    {% for skill in missing %}
+
+                    <li>✖ {{ skill }}</li>
+
+                    {% endfor %}
+
+                </ul>
+
+            </div>
+
+        </section>
+
+        <!-- Suggestions -->
+
+        <section class="card">
+
+            <h2>💡 AI Suggestions</h2>
+
+            <ul>
+
+                {% for s in suggestions %}
+
+                <li>{{ s }}</li>
+
+                {% endfor %}
+
+            </ul>
+
+        </section>
+
+        <!-- Learning Roadmap -->
+
+        <section class="card">
+
+            <h2>📚 Learning Roadmap</h2>
+
+            <ol>
+
+                <li>Week 1 - HTML & CSS</li>
+
+                <li>Week 2 - JavaScript</li>
+
+                <li>Week 3 - Python</li>
+
+                <li>Week 4 - Flask</li>
+
+                <li>Week 5 - SQL</li>
+
+                <li>Week 6 - Git & GitHub</li>
+
+                <li>Week 7 - Projects</li>
+
+                <li>Week 8 - Interview Preparation</li>
+
+            </ol>
+
+        </section>
+
+        <!-- Interview -->
+
+        <section class="card">
+
+            <h2>🎤 Interview Questions</h2>
+
+            <ul>
+
+                <li>Explain Python OOP.</li>
+
+                <li>Difference between List and Tuple?</li>
+
+                <li>What is Flask?</li>
+
+                <li>Explain SQL JOIN.</li>
+
+                <li>Difference between HTML and HTML5.</li>
+
+            </ul>
+
+        </section>
+
+        <!-- Resume Preview -->
+
+        <section class="card">
+
+            <h2>📄 Resume Preview</h2>
+
+            <pre>
+
+{{ resume_text }}
+
+            </pre>
+
+        </section>
+
+    </main>
+
+</body>
+
+</html>
+</html>

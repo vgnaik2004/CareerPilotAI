@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>CareerPilot AI</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/style.css') }}">
+
+</head>
+
+<body>
+
+<div class="container">
+
+    <h1>🎓 CareerPilot AI</h1>
+
+    <p>
+        AI Powered Resume Analyzer, ATS Score Checker,
+        Job Match & Career Mentor
+    </p>
+
+    <form action="/upload"
+          method="POST"
+          enctype="multipart/form-data">
+
+        <label><b>Select Target Job Role</b></label>
+
+        <br><br>
+
+        <select name="role" required>
+
+            <option value="">-- Select Job Role --</option>
+
+            <optgroup label="💻 Software Development">
+
+                <option>Frontend Developer</option>
+                <option>Backend Developer</option>
+                <option>Full Stack Developer</option>
+                <option>Python Developer</option>
+                <option>Java Developer</option>
+                <option>C++ Developer</option>
+                <option>PHP Developer</option>
+                <option>.NET Developer</option>
+                <option>Node.js Developer</option>
+
+            </optgroup>
+
+            <optgroup label="🤖 Artificial Intelligence">
+
+                <option>AI Engineer</option>
+                <option>Machine Learning Engineer</option>
+                <option>Deep Learning Engineer</option>
+                <option>Computer Vision Engineer</option>
+                <option>NLP Engineer</option>
+                <option>Generative AI Engineer</option>
+
+            </optgroup>
+
+            <optgroup label="📊 Data Science">
+
+                <option>Data Scientist</option>
+                <option>Data Analyst</option>
+                <option>Business Analyst</option>
+                <option>Data Engineer</option>
+                <option>BI Developer</option>
+
+            </optgroup>
+
+            <optgroup label="☁ Cloud Computing">
+
+                <option>AWS Engineer</option>
+                <option>Azure Engineer</option>
+                <option>Google Cloud Engineer</option>
+                <option>Cloud Engineer</option>
+                <option>DevOps Engineer</option>
+                <option>Site Reliability Engineer</option>
+
+            </optgroup>
+
+            <optgroup label="🔐 Cyber Security">
+
+                <option>Cyber Security Analyst</option>
+                <option>Ethical Hacker</option>
+                <option>Penetration Tester</option>
+                <option>Security Engineer</option>
+
+            </optgroup>
+
+            <optgroup label="📱 Mobile Development">
+
+                <option>Android Developer</option>
+                <option>iOS Developer</option>
+                <option>Flutter Developer</option>
+                <option>React Native Developer</option>
+
+            </optgroup>
+
+            <optgroup label="🧪 Software Testing">
+
+                <option>QA Engineer</option>
+                <option>Manual Test Engineer</option>
+                <option>Automation Test Engineer</option>
+                <option>SDET</option>
+
+            </optgroup>
+
+            <optgroup label="🌐 Web Technologies">
+
+                <option>WordPress Developer</option>
+                <option>UI Designer</option>
+                <option>UX Designer</option>
+
+            </optgroup>
+
+            <optgroup label="🖥 System & Network">
+
+                <option>Linux Administrator</option>
+                <option>System Administrator</option>
+                <option>Network Engineer</option>
+
+            </optgroup>
+
+            <optgroup label="⚡ Emerging Technologies">
+
+                <option>Blockchain Developer</option>
+                <option>IoT Engineer</option>
+                <option>Embedded Systems Engineer</option>
+                <option>Robotics Engineer</option>
+                <option>AR/VR Developer</option>
+                <option>Game Developer</option>
+
+            </optgroup>
+
+        </select>
+
+        <br><br>
+
+        <label><b>Upload Resume (PDF)</b></label>
+
+        <br><br>
+
+        <input
+            type="file"
+            name="resume"
+            accept=".pdf"
+            required>
+
+        <br><br>
+
+        <button type="submit">
+
+            🚀 Analyze Resume
+
+        </button>
+
+    </form>
+
+</div>
+
+</body>
+
+</html>
