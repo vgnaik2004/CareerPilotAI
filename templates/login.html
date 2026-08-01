@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>CareerPilot AI | Login</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/login.css') }}">
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+</head>
+
+<body>
+
+<div class="container">
+
+    <div class="left-panel">
+
+        <h1>🎓 CareerPilot AI</h1>
+
+        <h2>Welcome Back</h2>
+
+        <p>
+
+            AI Powered Resume Analyzer<br>
+
+            ATS Score Checker<br>
+
+            Job Match Prediction<br>
+
+            Interview Preparation
+
+        </p>
+
+    </div>
+
+
+    <div class="right-panel">
+
+        <form action="/login" method="POST">
+
+            <h2>Login</h2>
+
+            <div class="input-group">
+
+                <label>Email</label>
+
+                <input
+                    type="email"
+                    name="email"
+                    placeholder="Enter Email"
+                    required>
+
+            </div>
+
+
+            <div class="input-group">
+
+                <label>Password</label>
+
+                <input
+                    type="password"
+                    name="password"
+                    placeholder="Enter Password"
+                    required>
+
+            </div>
+
+
+            <button type="submit">
+
+                Login
+
+            </button>
+
+
+            <div class="bottom-text">
+
+                Don't have an account?
+
+                <a href="/register">
+
+                    Register
+
+                </a>
+
+            </div>
+
+        </form>
+
+    </div>
+
+</div>
+
+</body>
+
+</html>

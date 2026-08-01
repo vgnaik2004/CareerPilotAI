@@ -1,4 +1,4 @@
-from job_roles import JOB_ROLES
+from utils.job_roles import JOB_ROLES
 
 def match_role(role, skills):
 

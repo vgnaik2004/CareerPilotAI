@@ -1,91 +1,127 @@
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, redirect, url_for, flash, session
 import os
 
-from resume_parser import extract_text
-from skills import extract_skills
-from ats_score import calculate_ats
-from job_match import match_role
+from werkzeug.security import generate_password_hash, check_password_hash
+
+from config import Config
+from database import db, User
+
+from utils.resume_parser import extract_text
+from utils.skills import extract_skills
+from utils.ats_score import calculate_ats
+from utils.job_match import match_role
 
 app = Flask(__name__)
 
+# -------------------------------
+# Configuration
+# -------------------------------
+app.config.from_object(Config)
+
+# Initialize Database
+db.init_app(app)
+
+# Secret Key
+app.secret_key = Config.SECRET_KEY
+
+# Upload Folder
 UPLOAD_FOLDER = "uploads"
 app.config["UPLOAD_FOLDER"] = UPLOAD_FOLDER
 
+# Create Database
+with app.app_context():
+    db.create_all()
+
+# -----------------------------------
+# Home Page
+# -----------------------------------
 
 @app.route("/")
 def home():
-    return render_template("index.html")
+
+    if "user_id" in session:
+        return render_template("index.html")
+
+    return redirect(url_for("login"))
 
 
-@app.route("/upload", methods=["POST"])
-def upload():
+# -----------------------------------
+# Register Page
+# -----------------------------------
 
-    if "resume" not in request.files:
-        return "No Resume Uploaded"
+@app.route("/register", methods=["GET", "POST"])
+def register():
 
-    file = request.files["resume"]
+    if request.method == "POST":
 
-    if file.filename == "":
-        return "Please Select Resume"
+        fullname = request.form.get("fullname")
+        email = request.form.get("email")
+        password = request.form.get("password")
+        confirm = request.form.get("confirm")
 
-    filepath = os.path.join(app.config["UPLOAD_FOLDER"], file.filename)
+        # Check password match
+        if password != confirm:
+            flash("Passwords do not match!", "danger")
+            return redirect(url_for("register"))
 
-    file.save(filepath)
+        # Check existing user
+        existing_user = User.query.filter_by(email=email).first()
 
-    # ----------------------------------
-    # Extract Resume Text
-    # ----------------------------------
+        if existing_user:
+            flash("Email already exists!", "warning")
+            return redirect(url_for("register"))
 
-    resume_text = extract_text(filepath)
+        # Hash password
+        hashed_password = generate_password_hash(password)
 
-    # ----------------------------------
-    # Extract Skills
-    # ----------------------------------
+        # Create new user
+        new_user = User(
+            fullname=fullname,
+            email=email,
+            password=hashed_password
+        )
 
-    skills = extract_skills(resume_text)
+        db.session.add(new_user)
+        db.session.commit()
 
-    # ----------------------------------
-    # ATS Score
-    # ----------------------------------
+        flash("Registration Successful! Please Login.", "success")
 
-    score, suggestions = calculate_ats(resume_text)
+        return redirect(url_for("login"))
 
-    # ----------------------------------
-    # Selected Job Role
-    # ----------------------------------
+    return render_template("register.html")
 
-    role = request.form.get("role", "Frontend Developer")
+# -----------------------------------
+# Login Page
+# -----------------------------------
+@app.route("/login", methods=["GET", "POST"])
+def login():
 
-    # ----------------------------------
-    # Job Match
-    # ----------------------------------
+    if request.method == "POST":
 
-    match_percentage, found, missing = match_role(role, skills)
+        email = request.form.get("email")
+        password = request.form.get("password")
 
-    # ----------------------------------
-    # Send Data to Dashboard
-    # ----------------------------------
+        user = User.query.filter_by(email=email).first()
 
-    return render_template(
+        if user and check_password_hash(user.password, password):
 
-        "dashboard.html",
+            session["user_id"] = user.id
+            session["fullname"] = user.fullname
 
-        score=score,
+            return redirect(url_for("home"))
 
-        role=role,
+        flash("Invalid Email or Password", "danger")
+        return redirect(url_for("login"))
 
-        job_match=match_percentage,
+    return render_template("login.html")
 
-        skills=found,
 
-        missing=missing,
+@app.route("/logout")
+def logout():
 
-        suggestions=suggestions,
+    session.clear()
 
-        resume_text=resume_text
-
-    )
-
+    return redirect(url_for("login"))
 
 if __name__ == "__main__":
     app.run(debug=True)
