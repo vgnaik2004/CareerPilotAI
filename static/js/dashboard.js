@@ -1,128 +1,250 @@
-// ===============================
+// ==========================================
 // CareerPilot AI Dashboard
-// ===============================
+// ==========================================
 
-// Wait until page loads
 document.addEventListener("DOMContentLoaded", function () {
 
-    // ==========================
-    // Fade In Animation
-    // ==========================
+    // ===============================
+    // Dark Mode
+    // ===============================
 
-    const cards = document.querySelectorAll(".card");
+    const darkBtn = document.getElementById("darkModeBtn");
 
-    cards.forEach((card, index) => {
+    if (darkBtn) {
 
-        card.style.opacity = "0";
-        card.style.transform = "translateY(40px)";
+        if (localStorage.getItem("theme") === "dark") {
+            document.body.classList.add("dark");
+            darkBtn.innerHTML = "☀️";
+        }
 
-        setTimeout(() => {
+        darkBtn.addEventListener("click", function () {
 
-            card.style.transition = "0.6s ease";
-            card.style.opacity = "1";
-            card.style.transform = "translateY(0px)";
+            document.body.classList.toggle("dark");
 
-        }, index * 150);
+            if (document.body.classList.contains("dark")) {
 
-    });
+                localStorage.setItem("theme", "dark");
+                darkBtn.innerHTML = "☀️";
 
-    // ==========================
-    // Progress Bar Animation
-    // ==========================
+            } else {
 
-    const progressBars = document.querySelectorAll(".progress-fill");
+                localStorage.setItem("theme", "light");
+                darkBtn.innerHTML = "🌙";
 
-    progressBars.forEach(bar => {
+            }
 
-        const width = bar.style.width;
-
-        bar.style.width = "0%";
-
-        setTimeout(() => {
-
-            bar.style.transition = "width 2s ease";
-            bar.style.width = width;
-
-        }, 500);
-
-    });
-
-});
-
-// ===============================
-// Dark Mode
-// ===============================
-
-const darkBtn = document.getElementById("darkModeBtn");
-
-darkBtn.addEventListener("click", () => {
-
-    document.body.classList.toggle("dark-mode");
-
-    if (document.body.classList.contains("dark-mode")) {
-
-        darkBtn.innerHTML = "☀";
+        });
 
     }
 
-    else {
+    // ===============================
+    // Animated Counters
+    // ===============================
 
-        darkBtn.innerHTML = "🌙";
+    const numbers = document.querySelectorAll(".stat-card h2");
+
+    numbers.forEach(counter => {
+
+        let text = counter.innerText.replace("%", "");
+        let target = parseInt(text);
+
+        if (isNaN(target)) return;
+
+        let count = 0;
+
+        let speed = Math.max(10, target / 60);
+
+        const update = () => {
+
+            if (count < target) {
+
+                count += speed;
+
+                if (count > target)
+                    count = target;
+
+                if (counter.innerText.includes("%")) {
+                    counter.innerHTML = Math.floor(count) + "%";
+                } else {
+                    counter.innerHTML = Math.floor(count);
+                }
+
+                requestAnimationFrame(update);
+
+            }
+
+        };
+
+        update();
+
+    });
+
+    // ===============================
+    // ATS Chart
+    // ===============================
+
+    const atsCanvas = document.getElementById("atsChart");
+
+    if (atsCanvas) {
+
+        const atsScore =
+            parseInt(document.querySelectorAll(".stat-card h2")[0].innerText);
+
+        const jobMatch =
+            parseInt(document.querySelectorAll(".stat-card h2")[1].innerText);
+
+        new Chart(atsCanvas, {
+
+            type: "bar",
+
+            data: {
+
+                labels: ["ATS Score", "Job Match"],
+
+                datasets: [{
+
+                    data: [atsScore, jobMatch],
+
+                    backgroundColor: [
+                        "#2563eb",
+                        "#22c55e"
+                    ],
+
+                    borderRadius: 10
+
+                }]
+
+            },
+
+            options: {
+
+                responsive: true,
+
+                plugins: {
+
+                    legend: {
+
+                        display: false
+
+                    }
+
+                },
+
+                scales: {
+
+                    y: {
+
+                        beginAtZero: true,
+
+                        max: 100
+
+                    }
+
+                }
+
+            }
+
+        });
+
+    }
+
+    // ===============================
+    // Skills Chart
+    // ===============================
+
+    const skillsCanvas = document.getElementById("skillsChart");
+
+    if (skillsCanvas) {
+
+        const skills =
+            document.querySelectorAll(".stat-card h2")[2].innerText;
+
+        const missing =
+            document.querySelectorAll(".stat-card h2")[3].innerText;
+
+        new Chart(skillsCanvas, {
+
+            type: "doughnut",
+
+            data: {
+
+                labels: [
+                    "Skills Found",
+                    "Missing Skills"
+                ],
+
+                datasets: [{
+
+                    data: [
+                        parseInt(skills),
+                        parseInt(missing)
+                    ],
+
+                    backgroundColor: [
+                        "#22c55e",
+                        "#ef4444"
+                    ]
+
+                }]
+
+            },
+
+            options: {
+
+                responsive: true,
+
+                plugins: {
+
+                    legend: {
+
+                        position: "bottom"
+
+                    }
+
+                }
+
+            }
+
+        });
+
+    }
+
+    // ===============================
+    // Card Hover Animation
+    // ===============================
+
+    const cards = document.querySelectorAll(".stat-card, .panel");
+
+    cards.forEach(card => {
+
+        card.addEventListener("mouseenter", function () {
+
+            this.style.transform = "translateY(-8px)";
+
+        });
+
+        card.addEventListener("mouseleave", function () {
+
+            this.style.transform = "translateY(0px)";
+
+        });
+
+    });
+
+    // ===============================
+    // Notification Animation
+    // ===============================
+
+    const bell = document.querySelector(".notification");
+
+    if (bell) {
+
+        setInterval(() => {
+
+            bell.classList.toggle("text-warning");
+
+        }, 1000);
 
     }
 
 });
-
-// ===============================
-// Card Hover Effect
-// ===============================
-
-const allCards = document.querySelectorAll(".card");
-
-allCards.forEach(card => {
-
-    card.addEventListener("mouseenter", () => {
-
-        card.style.transform = "translateY(-8px) scale(1.02)";
-
-    });
-
-    card.addEventListener("mouseleave", () => {
-
-        card.style.transform = "translateY(0px) scale(1)";
-
-    });
-
-});
-
-// ===============================
-// Notification Popup
-// ===============================
-
-window.onload = function () {
-
-    setTimeout(() => {
-
-        alert("🎉 Welcome to CareerPilot AI Dashboard!");
-
-    }, 800);
-
-};
-
-// ===============================
-// Resume Preview Scroll
-// ===============================
-
-const resume = document.querySelector("pre");
-
-if (resume) {
-
-    resume.style.scrollBehavior = "smooth";
-
-}
-
-// ===============================
-// Console Message
-// ===============================
-
-console.log("CareerPilot AI Dashboard Loaded Successfully.");

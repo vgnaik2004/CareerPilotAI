@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Resume History</title>
+
+    <style>
+
+        body{
+            font-family:Arial;
+            background:#f4f7fb;
+            margin:40px;
+        }
+
+        table{
+
+            width:100%;
+            border-collapse:collapse;
+            background:white;
+
+        }
+
+        th{
+
+            background:#2563eb;
+            color:white;
+            padding:15px;
+
+        }
+
+        td{
+
+            padding:12px;
+            border-bottom:1px solid #ddd;
+
+        }
+
+        tr:hover{
+
+            background:#f2f2f2;
+
+        }
+
+        a{
+
+            text-decoration:none;
+            color:#2563eb;
+            font-weight:bold;
+
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+<h1>📄 Resume History</h1>
+
+<br>
+
+<a href="/">⬅ Dashboard</a>
+
+<br><br>
+
+<table>
+
+<tr>
+
+<th>Resume</th>
+
+<th>ATS Score</th>
+
+<th>Job Role</th>
+
+<th>Upload Date</th>
+
+</tr>
+
+{% for resume in resumes %}
+
+<tr>
+
+<td>{{ resume.filename }}</td>
+
+<td>{{ resume.ats_score }}%</td>
+
+<td>{{ resume.job_role }}</td>
+
+<td>{{ resume.upload_date.strftime('%d-%m-%Y %H:%M') }}</td>
+
+</tr>
+
+{% endfor %}
+
+</table>
+
+</body>
+
+</html>

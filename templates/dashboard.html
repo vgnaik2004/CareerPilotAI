@@ -3,252 +3,662 @@
 
 <head>
 
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8">
 
-    <title>CareerPilot AI Dashboard</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/dashboard.css') }}">
+<title>CareerPilot AI</title>
 
-    <script defer src="{{ url_for('static', filename='js/dashboard.js') }}"></script>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+
+<link rel="stylesheet" href="{{ url_for('static', filename='css/dashboard.css') }}">
 
 </head>
 
 <body>
 
-    <!-- Navigation -->
+<div class="wrapper">
 
-    <nav class="navbar">
+<!-- Sidebar -->
 
-        <div class="logo">
-            🎓 CareerPilot AI
-        </div>
+<div class="sidebar">
 
-        <div class="nav-right">
+<div class="logo">
 
-            <button id="darkModeBtn">
-                🌙
-            </button>
+<i class="bi bi-file-earmark-person-fill"></i>
 
-            <div class="profile">
+<h3>CareerPilot AI</h3>
 
-                👤 Tulaja Naik
+<p>Resume Analyzer</p>
 
-            </div>
+</div>
 
-        </div>
+<ul>
 
-    </nav>
+<li class="active">
 
-    <!-- Sidebar -->
+<a href="/">
 
-    <aside class="sidebar">
+<i class="bi bi-speedometer2"></i>
 
-        <h2>Menu</h2>
+Dashboard
 
-        <ul>
+</a>
 
-            <li>🏠 Dashboard</li>
+</li>
 
-            <li>📄 Resume</li>
+<li>
 
-            <li>🎯 Job Match</li>
+<a href="/profile">
 
-            <li>💼 Interview</li>
+<i class="bi bi-person"></i>
 
-            <li>📚 Roadmap</li>
+Profile
 
-            <li>📊 Analytics</li>
+</a>
 
-            <li>⚙ Settings</li>
+</li>
 
-        </ul>
+<li>
 
-    </aside>
+<a href="/history">
 
-    <!-- Main Content -->
+<i class="bi bi-clock-history"></i>
 
-    <main class="content">
+Resume History
 
-        <!-- Hero -->
+</a>
 
-        <section class="hero">
+</li>
 
-            <h1>Welcome, Tulaja 👋</h1>
+<li>
 
-            <p>Your AI Career Mentor Dashboard</p>
+<a href="/admin">
 
-        </section>
+<i class="bi bi-bar-chart-fill"></i>
 
-        <!-- Cards -->
+Admin Dashboard
 
-        <section class="cards">
+</a>
 
-            <div class="card">
+</li>
 
-                <h2>📊 ATS Score</h2>
+<li>
 
-                <div class="score">
-                    {{ score }}/100
-                </div>
+<a href="/logout">
 
-                <div class="progress">
+<i class="bi bi-box-arrow-right"></i>
 
-                    <div class="progress-fill" style="width:{{ score }}%"></div>
+Logout
 
-                </div>
+</a>
 
-            </div>
+</li>
 
-            <div class="card">
+</ul>
 
-                <h2>🎯 Job Match</h2>
+</div>
 
-                <div class="score">
-                    {{ job_match }}%
-                </div>
+<!-- Main -->
 
-                <div class="progress">
+<div class="main">
 
-                    <div class="progress-fill" style="width:{{ job_match }}%"></div>
+<!-- Navbar -->
 
-                </div>
+<div class="topbar">
 
-            </div>
+<div>
 
-            <div class="card">
+<h2>Dashboard</h2>
 
-                <h2>🏆 Resume Strength</h2>
+<p>Welcome back, {{ session.get("fullname") }}</p>
 
-                <h1>Excellent</h1>
+</div>
 
-            </div>
+<div class="top-right">
 
-        </section>
+<button id="darkModeBtn">
 
-        <!-- Skills -->
+🌙
 
-        <section class="grid">
+</button>
 
-            <div class="card">
+<i class="bi bi-bell-fill"></i>
 
-                <h2>✅ Skills Found</h2>
+<div class="profile">
 
-                <ul>
+<i class="bi bi-person-circle"></i>
 
-                    {% for skill in skills %}
+{{ session.get("fullname") }}
 
-                    <li>✔ {{ skill }}</li>
+</div>
 
-                    {% endfor %}
+</div>
 
-                </ul>
+</div>
 
-            </div>
+<!-- Statistics -->
 
-            <div class="card">
+<div class="row g-4">
 
-                <h2>❌ Missing Skills</h2>
+<div class="col-lg-3">
 
-                <ul>
+<div class="stat-card">
 
-                    {% for skill in missing %}
+<div class="icon purple">
 
-                    <li>✖ {{ skill }}</li>
+<i class="bi bi-graph-up-arrow"></i>
 
-                    {% endfor %}
+</div>
 
-                </ul>
+<h6>ATS Score</h6>
 
-            </div>
+<h2>{{ score }}%</h2>
 
-        </section>
+<div class="progress">
 
-        <!-- Suggestions -->
+<div class="progress-bar bg-primary"
 
-        <section class="card">
+style="width:{{score}}%"></div>
 
-            <h2>💡 AI Suggestions</h2>
+</div>
 
-            <ul>
+</div>
 
-                {% for s in suggestions %}
+</div>
 
-                <li>{{ s }}</li>
+<div class="col-lg-3">
+
+<div class="stat-card">
+
+<div class="icon green">
+
+<i class="bi bi-bullseye"></i>
+
+</div>
+
+<h6>Job Match</h6>
+
+<h2>{{job_match}}%</h2>
+
+<div class="progress">
+
+<div class="progress-bar bg-success"
+
+style="width:{{job_match}}%"></div>
+
+</div>
+
+</div>
+
+</div>
+
+<div class="col-lg-3">
+
+<div class="stat-card">
+
+<div class="icon blue">
+
+<i class="bi bi-lightbulb-fill"></i>
+
+</div>
+
+<h6>Skills Found</h6>
+
+<h2>{{skills|length}}</h2>
+
+<p>Total Skills</p>
+
+</div>
+
+</div>
+
+<div class="col-lg-3">
+
+<div class="stat-card">
+
+<div class="icon orange">
+
+<i class="bi bi-exclamation-circle-fill"></i>
+
+</div>
+
+<h6>Missing Skills</h6>
+
+<h2>{{missing|length}}</h2>
+
+<p>Need Improvement</p>
+
+</div>
+
+</div>
+
+</div>
+
+<!-- Next Part Starts Here -->
+
+<!-- ========================= -->
+<!-- Skills Found -->
+<!-- ========================= -->
+
+<div class="row mt-4">
+
+    <div class="col-lg-6">
+
+        <div class="panel">
+
+            <h2>
+                <i class="bi bi-check-circle-fill text-success"></i>
+                Skills Found
+            </h2>
+
+            <div class="skills">
+
+                {% for skill in skills %}
+
+                <span class="badge success">
+
+                    {{ skill }}
+
+                </span>
 
                 {% endfor %}
 
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- Missing Skills -->
+
+    <div class="col-lg-6">
+
+        <div class="panel">
+
+            <h2>
+
+                <i class="bi bi-x-circle-fill text-danger"></i>
+
+                Missing Skills
+
+            </h2>
+
+            <div class="skills">
+
+                {% for skill in missing %}
+
+                <span class="badge danger">
+
+                    {{ skill }}
+
+                </span>
+
+                {% endfor %}
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<!-- ========================= -->
+<!-- AI Suggestions -->
+<!-- ========================= -->
+
+<div class="row mt-4">
+
+    <div class="col-lg-12">
+
+        <div class="panel">
+
+            <h2>
+
+                <i class="bi bi-robot text-primary"></i>
+
+                AI Suggestions
+
+            </h2>
+
+            <ul class="suggestion-list">
+
+                {% if suggestions %}
+
+                    {% for item in suggestions %}
+
+                    <li>
+
+                        <i class="bi bi-check-circle-fill"></i>
+
+                        {{ item }}
+
+                    </li>
+
+                    {% endfor %}
+
+                {% else %}
+
+                    <li>
+
+                        <i class="bi bi-info-circle-fill"></i>
+
+                        No suggestions available.
+
+                    </li>
+
+                {% endif %}
+
             </ul>
 
-        </section>
+        </div>
 
-        <!-- Learning Roadmap -->
+    </div>
 
-        <section class="card">
+</div>
 
-            <h2>📚 Learning Roadmap</h2>
+<!-- ======= PART 3 STARTS BELOW ======= -->
 
-            <ol>
+<!-- ===================================== -->
+<!-- Resume Preview -->
+<!-- ===================================== -->
 
-                <li>Week 1 - HTML & CSS</li>
+<div class="row mt-4">
 
-                <li>Week 2 - JavaScript</li>
+    <div class="col-lg-6">
 
-                <li>Week 3 - Python</li>
+        <div class="panel">
 
-                <li>Week 4 - Flask</li>
+            <h2>
+                <i class="bi bi-file-earmark-text-fill text-primary"></i>
+                Resume Preview
+            </h2>
 
-                <li>Week 5 - SQL</li>
+            <div class="resume-preview">
 
-                <li>Week 6 - Git & GitHub</li>
+                <pre>{{ resume_text[:1200] }}{% if resume_text|length > 1200 %}...{% endif %}</pre>
 
-                <li>Week 7 - Projects</li>
+            </div>
 
-                <li>Week 8 - Interview Preparation</li>
+        </div>
 
-            </ol>
+    </div>
 
-        </section>
+    <!-- ===================================== -->
+    <!-- Career Roadmap -->
+    <!-- ===================================== -->
 
-        <!-- Interview -->
+    <div class="col-lg-6">
 
-        <section class="card">
+        <div class="panel">
 
-            <h2>🎤 Interview Questions</h2>
+            <h2>
 
-            <ul>
+                <i class="bi bi-map-fill text-warning"></i>
 
-                <li>Explain Python OOP.</li>
+                Career Roadmap
 
-                <li>Difference between List and Tuple?</li>
+            </h2>
 
-                <li>What is Flask?</li>
+            {% if roadmap %}
 
-                <li>Explain SQL JOIN.</li>
+                {% for step in roadmap %}
 
-                <li>Difference between HTML and HTML5.</li>
+                <div class="road-item">
 
-            </ul>
+                    <div class="road-circle">
 
-        </section>
+                        {{ loop.index }}
 
-        <!-- Resume Preview -->
+                    </div>
 
-        <section class="card">
+                    <div>
 
-            <h2>📄 Resume Preview</h2>
+                        {{ step }}
 
-            <pre>
+                    </div>
 
-{{ resume_text }}
+                </div>
 
-            </pre>
+                {% endfor %}
 
-        </section>
+            {% else %}
 
-    </main>
+                <p>No roadmap available.</p>
+
+            {% endif %}
+
+        </div>
+
+    </div>
+
+</div>
+
+<!-- ===================================== -->
+<!-- Download PDF -->
+<!-- ===================================== -->
+
+<div class="row mt-4">
+
+    <div class="col-lg-12">
+
+        <div class="panel text-center">
+
+            <h2>
+
+                <i class="bi bi-file-earmark-pdf-fill text-danger"></i>
+
+                Download ATS Report
+
+            </h2>
+
+            <p class="mt-3">
+
+                Download your complete CareerPilot AI analysis report.
+
+            </p>
+
+            <a href="/download-report">
+
+                <button class="download-btn">
+
+                    <i class="bi bi-download"></i>
+
+                    Download PDF Report
+
+                </button>
+
+            </a>
+
+        </div>
+
+    </div>
+
+</div>
+
+<!-- ===================================== -->
+<!-- Charts -->
+<!-- ===================================== -->
+
+<div class="row mt-4">
+
+    <div class="col-lg-6">
+
+        <div class="panel">
+
+            <h2>
+
+                <i class="bi bi-bar-chart-fill"></i>
+
+                ATS Analytics
+
+            </h2>
+
+            <canvas id="atsChart"></canvas>
+
+        </div>
+
+    </div>
+
+    <div class="col-lg-6">
+
+        <div class="panel">
+
+            <h2>
+
+                <i class="bi bi-pie-chart-fill"></i>
+
+                Skills Distribution
+
+            </h2>
+
+            <canvas id="skillsChart"></canvas>
+
+        </div>
+
+    </div>
+
+</div>
+
+<!-- ======== PART 4 STARTS BELOW ======== -->
+
+<!-- Footer -->
+
+<footer class="footer mt-5">
+
+    <div class="text-center">
+
+        © 2026 CareerPilot AI | Resume Analyzer
+
+    </div>
+
+</footer>
+
+</div>
+
+<!-- End Main -->
+
+</div>
+
+<!-- End Wrapper -->
+
+<!-- Bootstrap -->
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+<!-- Chart.js -->
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<!-- Dashboard JS -->
+
+<script src="{{ url_for('static', filename='js/dashboard.js') }}"></script>
+
+<script>
+
+// ATS Chart
+
+const atsChart=document.getElementById('atsChart');
+
+if(atsChart){
+
+new Chart(atsChart,{
+
+type:'bar',
+
+data:{
+
+labels:['ATS','Job Match'],
+
+datasets:[{
+
+label:'Percentage',
+
+data:[{{ score }},{{ job_match }}],
+
+backgroundColor:[
+
+'#2563eb',
+
+'#22c55e'
+
+]
+
+}]
+
+},
+
+options:{
+
+responsive:true,
+
+plugins:{
+
+legend:{
+
+display:false
+
+}
+
+}
+
+}
+
+});
+
+}
+
+// Skills Chart
+
+const skillsChart=document.getElementById('skillsChart');
+
+if(skillsChart){
+
+new Chart(skillsChart,{
+
+type:'doughnut',
+
+data:{
+
+labels:['Skills Found','Missing Skills'],
+
+datasets:[{
+
+data:[
+
+{{ skills|length }},
+
+{{ missing|length }}
+
+],
+
+backgroundColor:[
+
+'#22c55e',
+
+'#ef4444'
+
+]
+
+}]
+
+},
+
+options:{
+
+responsive:true
+
+}
+
+});
+
+}
+
+</script>
 
 </body>
 
-</html>
 </html>

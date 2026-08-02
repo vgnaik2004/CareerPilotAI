@@ -2,222 +2,287 @@
    CareerPilot AI Dashboard
 =========================== */
 
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
 *{
     margin:0;
     padding:0;
     box-sizing:border-box;
-    font-family:Arial, Helvetica, sans-serif;
+    font-family:'Poppins',sans-serif;
 }
 
 body{
-
-    background:#f4f7fb;
-    color:#222;
+    background:#f5f7fb;
+    color:#1e293b;
 }
 
-/* ===========================
-        NAVBAR
-=========================== */
+/* Wrapper */
 
-.navbar{
-
-    height:70px;
-
-    background:#2563eb;
-
-    color:white;
-
+.wrapper{
     display:flex;
+    min-height:100vh;
+}
 
-    justify-content:space-between;
+/* ================= Sidebar ================= */
 
-    align-items:center;
-
-    padding:0 30px;
-
+.sidebar{
+    width:270px;
+    background:linear-gradient(180deg,#2563eb,#1e40af);
+    color:white;
     position:fixed;
-
-    width:100%;
-
     top:0;
-
     left:0;
-
-    z-index:1000;
-
-    box-shadow:0 2px 10px rgba(0,0,0,.2);
-
+    bottom:0;
+    padding:25px;
 }
 
 .logo{
-
-    font-size:28px;
-
-    font-weight:bold;
-
+    text-align:center;
+    margin-bottom:40px;
 }
 
-.nav-right{
-
-    display:flex;
-
-    align-items:center;
-
-    gap:20px;
-
+.logo i{
+    font-size:50px;
 }
 
-#darkModeBtn{
-
-    border:none;
-
-    background:white;
-
-    color:#2563eb;
-
-    width:45px;
-
-    height:45px;
-
-    border-radius:50%;
-
-    cursor:pointer;
-
-    font-size:20px;
-
+.logo h3{
+    margin-top:10px;
+    font-weight:700;
 }
 
-.profile{
-
-    font-size:18px;
-
-    font-weight:bold;
-
-}
-
-/* ===========================
-        SIDEBAR
-=========================== */
-
-.sidebar{
-
-    position:fixed;
-
-    top:70px;
-
-    left:0;
-
-    width:230px;
-
-    height:100vh;
-
-    background:#1e293b;
-
-    color:white;
-
-    padding:30px;
-
-}
-
-.sidebar h2{
-
-    margin-bottom:20px;
-
+.logo p{
+    font-size:14px;
+    opacity:.8;
 }
 
 .sidebar ul{
-
     list-style:none;
-
+    margin-top:25px;
 }
 
 .sidebar li{
-
-    padding:15px;
-
-    margin-bottom:10px;
-
-    cursor:pointer;
-
-    border-radius:8px;
-
-    transition:.3s;
-
+    margin-bottom:12px;
 }
 
-.sidebar li:hover{
-
-    background:#2563eb;
-
-}
-
-/* ===========================
-      MAIN CONTENT
-=========================== */
-
-.content{
-
-    margin-left:250px;
-
-    margin-top:90px;
-
-    padding:30px;
-
-}
-
-/* ===========================
-        HERO
-=========================== */
-
-.hero{
-
-    background:linear-gradient(90deg,#2563eb,#06b6d4);
-
+.sidebar a{
     color:white;
-
-    padding:40px;
-
-    border-radius:15px;
-
-    margin-bottom:30px;
-
+    text-decoration:none;
+    display:flex;
+    align-items:center;
+    gap:12px;
+    padding:14px 18px;
+    border-radius:12px;
+    transition:.3s;
 }
 
-.hero h1{
-
-    font-size:36px;
-
+.sidebar a:hover{
+    background:rgba(255,255,255,.15);
 }
 
-.hero p{
-
-    margin-top:10px;
-
-    font-size:18px;
-
-}
-
-/* ===========================
-        CARDS
-=========================== */
-
-.cards{
-
-    display:grid;
-
-    grid-template-columns:repeat(3,1fr);
-
-    gap:25px;
-
-    margin-bottom:30px;
-
-}
-
-.card{
-
+.sidebar .active a{
     background:white;
+    color:#2563eb;
+    font-weight:600;
+}
 
-    border-radius:15px;
+/* ================= Main ================= */
+
+.main{
+    margin-left:270px;
+    width:calc(100% - 270px);
+    padding:30px;
+}
+
+/* ================= Navbar ================= */
+
+.topbar{
+    background:white;
+    border-radius:18px;
+    padding:20px 30px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    box-shadow:0 10px 25px rgba(0,0,0,.08);
+    margin-bottom:30px;
+}
+
+.topbar h2{
+    font-weight:700;
+}
+
+.top-right{
+    display:flex;
+    align-items:center;
+    gap:20px;
+}
+
+.profile{
+    background:#eef2ff;
+    padding:10px 18px;
+    border-radius:40px;
+    font-weight:600;
+}
+
+.notification{
+    font-size:22px;
+    cursor:pointer;
+}
+
+#darkModeBtn{
+    border:none;
+    width:45px;
+    height:45px;
+    border-radius:50%;
+    background:#2563eb;
+    color:white;
+    cursor:pointer;
+}
+
+/* =========================================
+   STATISTICS CARDS
+========================================= */
+
+.stat-card{
+
+    background:#ffffff;
+
+    border-radius:20px;
+
+    padding:25px;
+
+    box-shadow:0 10px 25px rgba(0,0,0,.08);
+
+    transition:all .3s ease;
+
+    position:relative;
+
+    overflow:hidden;
+
+    height:100%;
+
+}
+
+.stat-card:hover{
+
+    transform:translateY(-8px);
+
+    box-shadow:0 20px 35px rgba(37,99,235,.15);
+
+}
+
+.stat-card h6{
+
+    color:#64748b;
+
+    font-size:15px;
+
+    font-weight:600;
+
+    margin-bottom:12px;
+
+}
+
+.stat-card h2{
+
+    font-size:42px;
+
+    font-weight:700;
+
+    color:#0f172a;
+
+    margin-bottom:15px;
+
+}
+
+/* =========================================
+   ICONS
+========================================= */
+
+.icon{
+
+    width:65px;
+
+    height:65px;
+
+    border-radius:18px;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    font-size:30px;
+
+    margin-bottom:18px;
+
+}
+
+.purple{
+
+    background:#ede9fe;
+
+    color:#7c3aed;
+
+}
+
+.green{
+
+    background:#dcfce7;
+
+    color:#16a34a;
+
+}
+
+.blue{
+
+    background:#dbeafe;
+
+    color:#2563eb;
+
+}
+
+.orange{
+
+    background:#ffedd5;
+
+    color:#ea580c;
+
+}
+
+/* =========================================
+   PROGRESS BAR
+========================================= */
+
+.progress{
+
+    height:10px;
+
+    border-radius:20px;
+
+    background:#e5e7eb;
+
+    overflow:hidden;
+
+}
+
+.progress-bar{
+
+    border-radius:20px;
+
+    transition:width 1.2s ease;
+
+}
+
+/* =========================================
+   PANELS
+========================================= */
+
+.panel{
+
+    background:#fff;
+
+    border-radius:20px;
 
     padding:25px;
 
@@ -225,290 +290,498 @@ body{
 
     transition:.3s;
 
+    height:100%;
+
 }
 
-.card:hover{
+.panel:hover{
 
     transform:translateY(-6px);
 
 }
 
-.card h2{
+.panel h2{
+
+    font-size:24px;
+
+    font-weight:700;
 
     margin-bottom:20px;
 
 }
 
-/* ===========================
-      SCORE
-=========================== */
+/* =========================================
+   SKILL TAGS
+========================================= */
 
-.score{
+.skills{
 
-    font-size:48px;
+    display:flex;
 
-    color:#2563eb;
+    flex-wrap:wrap;
 
-    font-weight:bold;
-
-    text-align:center;
-
-    margin-bottom:20px;
+    gap:12px;
 
 }
 
-/* ===========================
-     PROGRESS BAR
-=========================== */
+.badge{
 
-.progress{
+    padding:10px 18px;
 
-    width:100%;
+    border-radius:30px;
 
-    height:14px;
+    font-size:15px;
 
-    background:#ddd;
-
-    border-radius:20px;
-
-    overflow:hidden;
+    font-weight:600;
 
 }
 
-.progress-fill{
+.badge.success{
 
-    height:100%;
+    background:#dcfce7;
 
-    background:linear-gradient(90deg,#06b6d4,#2563eb);
-
-}
-
-/* ===========================
-      GRID
-=========================== */
-
-.grid{
-
-    display:grid;
-
-    grid-template-columns:repeat(2,1fr);
-
-    gap:25px;
-
-    margin-bottom:30px;
+    color:#15803d;
 
 }
 
-/* ===========================
-      LIST
-=========================== */
+.badge.danger{
 
-.card ul{
+    background:#fee2e2;
+
+    color:#dc2626;
+
+}
+
+/* =========================================
+   AI SUGGESTIONS
+========================================= */
+
+.suggestion-list{
 
     list-style:none;
 
+    padding:0;
+
 }
 
-.card li{
+.suggestion-list li{
 
-    padding:12px;
+    background:#f8fafc;
 
-    background:#eef4ff;
+    border-radius:12px;
+
+    padding:14px;
 
     margin-bottom:12px;
 
-    border-radius:8px;
+    transition:.3s;
 
 }
 
-/* ===========================
-     ROADMAP
-=========================== */
+.suggestion-list li:hover{
 
-.card ol{
-
-    margin-left:20px;
+    background:#eef2ff;
 
 }
 
-.card ol li{
+.suggestion-list i{
 
-    padding:10px;
+    color:#2563eb;
+
+    margin-right:10px;
 
 }
 
-/* ===========================
-     RESUME
-=========================== */
+/* =========================================
+   ROADMAP
+========================================= */
 
-pre{
+.road-item{
 
-    background:#f7f7f7;
+    display:flex;
 
-    padding:20px;
+    align-items:center;
 
-    border-radius:10px;
+    margin-bottom:18px;
+
+}
+
+.road-circle{
+
+    width:42px;
+
+    height:42px;
+
+    border-radius:50%;
+
+    background:#2563eb;
+
+    color:white;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    font-weight:bold;
+
+    margin-right:15px;
+
+}
+
+/* =========================================
+   RESUME PREVIEW
+========================================= */
+
+.resume-preview{
+
+    max-height:320px;
 
     overflow:auto;
 
-    max-height:500px;
+    background:#f8fafc;
+
+    border-radius:12px;
+
+    padding:18px;
 
 }
 
-/* ===========================
-      FOOTER SPACE
-=========================== */
+.resume-preview pre{
 
-.card{
+    white-space:pre-wrap;
 
-    margin-bottom:25px;
+    word-break:break-word;
 
-}
-
-/* ===========================
-      RESPONSIVE
-=========================== */
-
-@media(max-width:1100px){
-
-.cards{
-
-grid-template-columns:1fr 1fr;
+    font-size:14px;
 
 }
 
+/* =========================================
+   DOWNLOAD BUTTON
+========================================= */
+
+.download-btn{
+
+    width:100%;
+
+    padding:15px;
+
+    background:#2563eb;
+
+    color:white;
+
+    border:none;
+
+    border-radius:12px;
+
+    font-size:16px;
+
+    font-weight:600;
+
+    transition:.3s;
+
 }
 
-@media(max-width:900px){
+.download-btn:hover{
+
+    background:#1d4ed8;
+
+    transform:translateY(-2px);
+
+}
+
+/* ===========================================
+   CHARTS
+=========================================== */
+
+canvas{
+    width:100% !important;
+    max-height:320px;
+}
+
+/* ===========================================
+   FOOTER
+=========================================== */
+
+.footer{
+
+    margin-top:40px;
+
+    padding:20px;
+
+    background:#ffffff;
+
+    border-radius:18px;
+
+    text-align:center;
+
+    color:#64748b;
+
+    box-shadow:0 8px 20px rgba(0,0,0,.08);
+
+}
+
+/* ===========================================
+   SCROLLBAR
+=========================================== */
+
+::-webkit-scrollbar{
+    width:8px;
+}
+
+::-webkit-scrollbar-thumb{
+    background:#3b82f6;
+    border-radius:20px;
+}
+
+::-webkit-scrollbar-track{
+    background:#f1f5f9;
+}
+
+/* ===========================================
+   BUTTONS
+=========================================== */
+
+button,
+.btn{
+
+    transition:.3s ease;
+
+}
+
+button:hover,
+.btn:hover{
+
+    transform:translateY(-2px);
+
+}
+
+/* ===========================================
+   FADE ANIMATION
+=========================================== */
+
+@keyframes fadeIn{
+
+    from{
+
+        opacity:0;
+
+        transform:translateY(20px);
+
+    }
+
+    to{
+
+        opacity:1;
+
+        transform:translateY(0);
+
+    }
+
+}
+
+.stat-card,
+.panel,
+.topbar{
+
+    animation:fadeIn .6s ease;
+
+}
+
+/* ===========================================
+   DARK MODE
+=========================================== */
+
+body.dark{
+
+    background:#0f172a;
+
+    color:#f8fafc;
+
+}
+
+body.dark .topbar,
+body.dark .panel,
+body.dark .stat-card,
+body.dark .footer{
+
+    background:#1e293b;
+
+    color:#f8fafc;
+
+}
+
+body.dark .resume-preview{
+
+    background:#334155;
+
+    color:white;
+
+}
+
+body.dark .suggestion-list li{
+
+    background:#334155;
+
+    color:white;
+
+}
+
+body.dark .profile{
+
+    background:#334155;
+
+    color:white;
+
+}
+
+body.dark .progress{
+
+    background:#475569;
+
+}
+
+/* ===========================================
+   RESPONSIVE
+=========================================== */
+
+@media(max-width:991px){
 
 .sidebar{
 
-display:none;
+    width:80px;
+
+    padding:20px 10px;
 
 }
 
-.content{
+.sidebar .logo h3,
+.sidebar .logo p{
 
-margin-left:0;
+    display:none;
+
+}
+
+.sidebar a{
+
+    justify-content:center;
+
+    font-size:0;
+
+}
+
+.sidebar a i{
+
+    font-size:22px;
+
+    margin:0;
+
+}
+
+.main{
+
+    margin-left:80px;
+
+    width:calc(100% - 80px);
+
+}
+
+.topbar{
+
+    flex-direction:column;
+
+    align-items:flex-start;
+
+    gap:15px;
 
 }
 
 }
 
-@media(max-width:700px){
+@media(max-width:768px){
 
-.cards{
+.main{
 
-grid-template-columns:1fr;
+    margin-left:0;
 
-}
+    width:100%;
 
-.grid{
-
-grid-template-columns:1fr;
+    padding:15px;
 
 }
 
-.hero h1{
+.sidebar{
 
-font-size:28px;
+    position:relative;
 
-}
+    width:100%;
 
-.navbar{
-
-padding:0 15px;
+    height:auto;
 
 }
 
-.logo{
+.wrapper{
 
-font-size:20px;
+    flex-direction:column;
+
+}
+
+.topbar{
+
+    padding:15px;
+
+}
+
+.stat-card h2{
+
+    font-size:30px;
+
+}
+
+.panel h2{
+
+    font-size:20px;
+
+}
+
+.download-btn{
+
+    font-size:15px;
+
+}
+
+}
+
+@media(max-width:576px){
+
+.skills{
+
+    gap:8px;
+
+}
+
+.badge{
+
+    font-size:13px;
+
+    padding:8px 12px;
 
 }
 
 .profile{
 
-display:none;
+    padding:8px 12px;
+
+    font-size:14px;
 
 }
 
-}
+.topbar h2{
 
-/* ==========================
-        DARK MODE
-========================== */
-
-.dark-mode{
-
-    background:#0f172a;
-
-    color:white;
+    font-size:24px;
 
 }
-
-.dark-mode .card{
-
-    background:#1e293b;
-
-    color:white;
-
-}
-
-.dark-mode .hero{
-
-    background:linear-gradient(90deg,#111827,#1f2937);
-
-}
-
-/* ==========================
-        DARK MODE
-========================== */
-
-.dark-mode{
-
-    background:#0f172a;
-
-    color:white;
-
-}
-
-.dark-mode .card{
-
-    background:#1e293b;
-
-    color:white;
-
-}
-
-.dark-mode .hero{
-
-    background:linear-gradient(90deg,#111827,#1f2937);
-
-}
-
-.dark-mode pre{
-
-    background:#111827;
-
-    color:white;
-
-}
-
-.dark-mode .sidebar{
-
-    background:#020617;
-
-}
-
-.dark-mode .navbar{
-
-    background:#111827;
-
-}
-
-.dark-mode li{
-
-    color:white;
 
 }

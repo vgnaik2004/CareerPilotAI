@@ -1,15 +1,21 @@
+from flask import send_file
+from utils.pdf_report import generate_pdf
+from utils.interview_questions import get_interview_questions
+from utils.ai_suggestions import get_ai_suggestions
 from flask import Flask, render_template, request, redirect, url_for, flash, session
 import os
 
 from werkzeug.security import generate_password_hash, check_password_hash
 
 from config import Config
-from database import db, User
+from database import db, User, Resume
+from sqlalchemy import func
 
 from utils.resume_parser import extract_text
 from utils.skills import extract_skills
 from utils.ats_score import calculate_ats
 from utils.job_match import match_role
+from utils.roadmap import get_roadmap
 
 app = Flask(__name__)
 
@@ -122,6 +128,163 @@ def logout():
     session.clear()
 
     return redirect(url_for("login"))
+
+# -----------------------------------
+# Upload Resume
+# -----------------------------------
+
+@app.route("/upload", methods=["POST"])
+def upload():
+
+    if "user_id" not in session:
+        return redirect(url_for("login"))
+
+    if "resume" not in request.files:
+        return "No Resume Uploaded"
+
+    file = request.files["resume"]
+
+    if file.filename == "":
+        return "Please Select Resume"
+
+    filepath = os.path.join(app.config["UPLOAD_FOLDER"], file.filename)
+
+    file.save(filepath)
+
+    # Extract Resume Text
+    resume_text = extract_text(filepath)
+
+    # Extract Skills
+    skills = extract_skills(resume_text)
+
+    # ATS Score
+    score, suggestions = calculate_ats(resume_text)
+
+    # Selected Job Role
+    role = request.form.get("role", "Frontend Developer")
+    # Job Match
+    job_match, found, missing = match_role(role, skills)
+    roadmap = get_roadmap(role)
+    ai_suggestions = get_ai_suggestions(score, missing)
+    
+
+    # -----------------------------
+    # Save Resume History
+    # -----------------------------
+    new_resume = Resume(
+        filename=file.filename,
+        ats_score=score,
+        job_role=role,
+        user_id=session["user_id"]
+    )
+
+    db.session.add(new_resume)
+    db.session.commit()
+
+    return render_template(
+    "dashboard.html",
+    score=score,
+    role=role,
+    job_match=job_match,
+    skills=found,
+    missing=missing,
+    suggestions=ai_suggestions,
+    resume_text=resume_text,
+    roadmap=roadmap,
+)
+
+# ===================================
+# Resume History
+# ===================================
+
+@app.route("/history")
+def history():
+
+    if "user_id" not in session:
+        return redirect(url_for("login"))
+
+    resumes = Resume.query.filter_by(
+        user_id=session["user_id"]
+    ).order_by(
+        Resume.upload_date.desc()
+    ).all()
+
+    return render_template(
+        "history.html",
+        resumes=resumes
+    )
+
+# ===================================
+# Profile Page
+# ===================================
+
+@app.route("/profile")
+def profile():
+
+    if "user_id" not in session:
+        return redirect(url_for("login"))
+
+    user = User.query.get(session["user_id"])
+
+    return render_template(
+        "profile.html",
+        user=user
+    )
+
+
+# ===================================
+# Admin Dashboard
+# ===================================
+
+@app.route("/admin")
+def admin():
+
+    total_users = User.query.count()
+
+    total_resumes = Resume.query.count()
+
+    average_score = db.session.query(
+        func.avg(Resume.ats_score)
+    ).scalar()
+
+    return render_template(
+        "admin.html",
+        total_users=total_users,
+        total_resumes=total_resumes,
+        average_score=round(average_score or 0, 2)
+    )
+
+# ===================================
+# Download PDF Report
+# ===================================
+
+@app.route("/download-report")
+def download_report():
+
+    roadmap = [
+        "Improve Missing Skills",
+        "Build More Projects",
+        "Practice Interview Questions",
+        "Apply for Jobs"
+    ]
+
+    generate_pdf(
+        "reports/ATS_Report.pdf",
+        score=85,
+        role="Python Developer",
+        skills=["Python", "Flask", "SQL"],
+        missing=["Docker", "AWS"],
+        suggestions=[
+            "Add more projects",
+            "Improve ATS keywords"
+        ],
+        roadmap=roadmap
+    )
+
+    return send_file(
+        "reports/ATS_Report.pdf",
+        as_attachment=True
+    )
 
 if __name__ == "__main__":
     app.run(debug=True)

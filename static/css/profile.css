@@ -1,0 +1,45 @@
+body{
+
+    background:#f4f6f9;
+
+    font-family:Arial;
+
+}
+
+.profile-card{
+
+    width:450px;
+
+    margin:60px auto;
+
+    background:white;
+
+    padding:30px;
+
+    border-radius:15px;
+
+    text-align:center;
+
+    box-shadow:0 5px 20px rgba(0,0,0,.2);
+
+}
+
+h1{
+
+    color:#2563eb;
+
+}
+
+a{
+
+    text-decoration:none;
+
+    background:#2563eb;
+
+    color:white;
+
+    padding:12px 25px;
+
+    border-radius:8px;
+
+}

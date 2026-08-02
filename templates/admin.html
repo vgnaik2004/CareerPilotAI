@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Admin Dashboard</title>
+
+    <style>
+
+        body{
+
+            font-family:Arial;
+            background:#f4f6f9;
+            margin:40px;
+
+        }
+
+        h1{
+
+            color:#2563eb;
+
+        }
+
+        .cards{
+
+            display:flex;
+            gap:20px;
+            margin-top:30px;
+
+        }
+
+        .card{
+
+            flex:1;
+            background:white;
+            padding:30px;
+            border-radius:15px;
+            box-shadow:0 5px 15px rgba(0,0,0,.15);
+            text-align:center;
+
+        }
+
+        .number{
+
+            font-size:40px;
+            color:#2563eb;
+            font-weight:bold;
+
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+<h1>👨‍💼 CareerPilot AI - Admin Dashboard</h1>
+
+<div class="cards">
+
+    <div class="card">
+
+        <h2>Total Users</h2>
+
+        <div class="number">
+
+            {{ total_users }}
+
+        </div>
+
+    </div>
+
+    <div class="card">
+
+        <h2>Total Resumes</h2>
+
+        <div class="number">
+
+            {{ total_resumes }}
+
+        </div>
+
+    </div>
+
+    <div class="card">
+
+        <h2>Average ATS</h2>
+
+        <div class="number">
+
+            {{ average_score }}%
+
+        </div>
+
+    </div>
+
+</div>
+
+<br><br>
+
+<a href="/">⬅ Back to Dashboard</a>
+
+</body>
+
+</html>
