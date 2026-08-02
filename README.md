@@ -1,40 +1,20 @@
-# 🚀 CareerPilot AI – AI-Powered Resume Analyzer
+# 🚀 CareerPilot AI
 
-![Python](https://img.shields.io/badge/Python-3.11-blue?logo=python)
-![Flask](https://img.shields.io/badge/Flask-Web%20Framework-black?logo=flask)
-![SQLite](https://img.shields.io/badge/Database-SQLite-blue)
-![Bootstrap](https://img.shields.io/badge/Bootstrap-5-purple?logo=bootstrap)
-![License](https://img.shields.io/badge/License-MIT-green)
+An AI-powered Resume Analyzer built using **Python, Flask, SQLite, HTML, CSS, JavaScript, Bootstrap, Chart.js, and ReportLab**.
 
-CareerPilot AI is an AI-powered Resume Analyzer built using **Python, Flask, SQLite, HTML, CSS, JavaScript, Bootstrap, and Chart.js**. It helps users upload resumes, calculate ATS scores, identify missing skills, receive AI-based suggestions, and generate downloadable PDF reports.
+CareerPilot AI helps job seekers analyze resumes, calculate ATS scores, identify missing skills, generate AI-based suggestions, create career roadmaps, and download detailed PDF reports.
 
 ---
 
-## 🌐 Live Demo
+## 📌 Features
 
-🔗 **Live Website:** https://your-app-url.onrender.com
-
-> Replace this link after deploying your project.
-
----
-
-## 📂 GitHub Repository
-
-🔗 https://github.com/YOUR_GITHUB_USERNAME/CareerPilotAI
-
-Replace `YOUR_GITHUB_USERNAME` with your GitHub username.
-
----
-
-# ✨ Features
-
-- 🔐 User Login & Registration
+- 🔐 User Authentication (Login & Register)
 - 📄 Resume Upload (PDF/DOCX)
 - 🤖 AI Resume Analysis
 - 📊 ATS Score Calculation
 - 🎯 Job Match Percentage
 - ✅ Skills Detection
-- ❌ Missing Skills Identification
+- ❌ Missing Skills Analysis
 - 💡 AI Suggestions
 - 🗺 Career Roadmap
 - 🎤 Interview Questions
@@ -43,37 +23,36 @@ Replace `YOUR_GITHUB_USERNAME` with your GitHub username.
 - 📈 Analytics Dashboard
 - 👨‍💼 Admin Dashboard
 - 🌙 Dark Mode
-- 📱 Responsive Design
+- 📱 Responsive UI
 
 ---
 
-# 🛠 Tech Stack
-
-### Backend
-
-- Python
-- Flask
-- SQLite
+## 🛠 Tech Stack
 
 ### Frontend
-
 - HTML5
 - CSS3
 - Bootstrap 5
 - JavaScript
+- Chart.js
+
+### Backend
+- Python
+- Flask
+
+### Database
+- SQLite
 
 ### Libraries
-
-- Chart.js
 - ReportLab
 - PyPDF2
 - python-docx
 
 ---
 
-# 📁 Project Structure
+## 📂 Project Structure
 
-```text
+```
 CareerPilotAI/
 │
 ├── app.py
@@ -81,14 +60,6 @@ CareerPilotAI/
 ├── requirements.txt
 │
 ├── templates/
-│   ├── dashboard.html
-│   ├── login.html
-│   ├── register.html
-│   ├── profile.html
-│   ├── history.html
-│   ├── admin.html
-│   └── index.html
-│
 ├── static/
 │   ├── css/
 │   ├── js/
@@ -96,65 +67,59 @@ CareerPilotAI/
 │
 ├── uploads/
 ├── reports/
-│
-└── utils/
+├── utils/
+└── README.md
 ```
 
 ---
 
-# 📸 Screenshots
+## 📸 Screenshots
 
-## Login Page
+### Login Page
 
-> Add screenshot here
+(Add Screenshot)
 
----
+### Dashboard
 
-## Dashboard
+(Add Screenshot)
 
-> Add screenshot here
+### Admin Dashboard
 
----
+(Add Screenshot)
 
-## Admin Dashboard
+### PDF Report
 
-> Add screenshot here
-
----
-
-## ATS Report
-
-> Add screenshot here
+(Add Screenshot)
 
 ---
 
-# ⚙ Installation
+## ⚙️ Installation
 
-### Clone Repository
+Clone the repository
 
 ```bash
-git clone https://github.com/YOUR_GITHUB_USERNAME/CareerPilotAI.git
+git clone https://github.com/vgnaik2004/CareerPilotAI.git
 ```
 
-### Open Project
+Go to the project folder
 
 ```bash
 cd CareerPilotAI
 ```
 
-### Install Dependencies
+Install dependencies
 
 ```bash
 pip install -r requirements.txt
 ```
 
-### Run
+Run the application
 
 ```bash
 python app.py
 ```
 
-Open:
+Open in your browser
 
 ```
 http://127.0.0.1:5000
@@ -162,39 +127,43 @@ http://127.0.0.1:5000
 
 ---
 
-# 🎯 Future Improvements
+## 📂 GitHub Repository
+
+**GitHub:** https://github.com/vgnaik2004/CareerPilotAI
+
+---
+
+## 👨‍💻 Author
+
+**V G Tulaja Naik**
+
+📧 Email: *(Add your email if you want)*
+
+🔗 LinkedIn: https://www.linkedin.com/in/v-g-tulaja-naik-08258635b
+
+🐙 GitHub: https://github.com/vgnaik2004
+
+---
+
+## 🚀 Future Improvements
 
 - Resume vs Job Description Matching
 - AI Resume Rewriting
-- Email PDF Reports
-- Cloud Database (PostgreSQL)
-- Recruiter Dashboard
 - Job Recommendations
-- Docker Support
+- Cloud Database Integration
+- Email Report Generation
+- Recruiter Dashboard
+- Docker Deployment
 
 ---
 
-# 👨‍💻 Author
+## ⭐ Support
 
-**Tulaja Naik**
+If you found this project useful:
 
-GitHub:
-https://github.com/YOUR_GITHUB_USERNAME
-
-LinkedIn:
-https://www.linkedin.com/in/YOUR_LINKEDIN_USERNAME/
-
----
-
-# ⭐ Support
-
-If you like this project:
-
-⭐ Star this repository
-
-🍴 Fork it
-
-📢 Share it with others
+- ⭐ Star this repository
+- 🍴 Fork the repository
+- 💬 Share your feedback
 
 ---
 
