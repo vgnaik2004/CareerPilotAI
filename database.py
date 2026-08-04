@@ -15,28 +15,27 @@ class User(UserMixin, db.Model):
 
     id = db.Column(db.Integer, primary_key=True)
 
-    fullname = db.Column(
-        db.String(100),
-        nullable=False
-    )
+    fullname = db.Column(db.String(100), nullable=False)
 
-    email = db.Column(
-        db.String(120),
-        unique=True,
-        nullable=False
-    )
+    email = db.Column(db.String(120), unique=True, nullable=False)
 
-    password = db.Column(
-        db.String(255),
-        nullable=False
-    )
+    mobile = db.Column(db.String(15))
+
+    college = db.Column(db.String(200))
+
+    course = db.Column(db.String(100))
+
+    graduation_year = db.Column(db.String(10))
+
+    bio = db.Column(db.Text)
+
+    password = db.Column(db.String(255), nullable=False)
 
     created_at = db.Column(
         db.DateTime,
         default=datetime.utcnow
     )
 
-    # Relationship with Resume table
     resumes = db.relationship(
         "Resume",
         backref="user",
@@ -45,7 +44,6 @@ class User(UserMixin, db.Model):
 
     def __repr__(self):
         return f"<User {self.email}>"
-
 
 # =====================================
 # Resume Table

@@ -1,0 +1,742 @@
+/* ==========================================
+   CareerPilot AI Register
+========================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Poppins',sans-serif;
+}
+
+body{
+
+    min-height:100vh;
+
+    background:linear-gradient(135deg,#2563eb,#0ea5e9);
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    padding:40px;
+
+}
+
+/* Main Card */
+
+.register-card{
+
+    width:1200px;
+
+    max-width:100%;
+
+    background:white;
+
+    border-radius:25px;
+
+    overflow:hidden;
+
+    display:grid;
+
+    grid-template-columns:42% 58%;
+
+    box-shadow:0 25px 60px rgba(0,0,0,.25);
+
+}
+
+/* ==========================================
+   LEFT PANEL
+========================================== */
+
+.left-panel{
+
+    background:linear-gradient(180deg,#2563eb,#1d4ed8);
+
+    color:white;
+
+    padding:50px;
+
+    display:flex;
+
+    flex-direction:column;
+
+    justify-content:space-between;
+
+}
+
+.logo{
+
+    text-align:center;
+
+}
+
+.logo i{
+
+    font-size:60px;
+
+}
+
+.logo h1{
+
+    margin-top:15px;
+
+    font-size:38px;
+
+    font-weight:700;
+
+}
+
+.logo p{
+
+    opacity:.9;
+
+    margin-top:8px;
+
+}
+
+.left-panel h2{
+
+    margin-top:40px;
+
+    font-size:32px;
+
+    font-weight:700;
+
+}
+
+.tagline{
+
+    margin-top:15px;
+
+    line-height:1.8;
+
+    opacity:.95;
+
+}
+
+/* Features */
+
+.features{
+
+    margin-top:35px;
+
+}
+
+.feature{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:12px;
+
+    margin-bottom:18px;
+
+}
+
+.feature i{
+
+    color:#4ade80;
+
+    font-size:22px;
+
+}
+
+.feature span{
+
+    font-size:17px;
+
+}
+
+/* Quote */
+
+.quote{
+
+    margin-top:50px;
+
+    border-top:1px solid rgba(255,255,255,.25);
+
+    padding-top:25px;
+
+}
+
+.quote h4{
+
+    font-weight:600;
+
+}
+
+.quote p{
+
+    margin-top:10px;
+
+    opacity:.8;
+
+}
+
+/* ==========================================
+   RIGHT PANEL
+========================================== */
+
+.right-panel{
+
+    padding:50px;
+
+}
+
+.form-header{
+
+    margin-bottom:35px;
+
+}
+
+.form-header h2{
+
+    font-size:36px;
+
+    font-weight:700;
+
+    color:#111827;
+
+}
+
+.form-header p{
+
+    margin-top:10px;
+
+    color:#64748b;
+
+}
+
+
+/* ==========================================
+   FORM
+========================================== */
+
+.register-form{
+
+    width:100%;
+
+}
+
+.input-group{
+
+    border-radius:14px;
+
+    overflow:hidden;
+
+    box-shadow:0 5px 15px rgba(0,0,0,.05);
+
+}
+
+.input-group-text{
+
+    background:#f8fafc;
+
+    border:none;
+
+    color:#2563eb;
+
+    width:55px;
+
+    justify-content:center;
+
+}
+
+.form-control{
+
+    border:none;
+
+    padding:15px;
+
+    font-size:16px;
+
+    background:#f8fafc;
+
+}
+
+.form-control:focus{
+
+    box-shadow:none;
+
+    background:white;
+
+}
+
+/* ==========================================
+   PASSWORD BUTTON
+========================================== */
+
+#togglePassword{
+
+    border:none;
+
+    background:#f8fafc;
+
+    color:#2563eb;
+
+}
+
+#togglePassword:hover{
+
+    background:#eef2ff;
+
+}
+
+/* ==========================================
+   PASSWORD STRENGTH
+========================================== */
+
+.password-strength{
+
+    width:100%;
+
+    height:6px;
+
+    background:#e5e7eb;
+
+    border-radius:20px;
+
+    overflow:hidden;
+
+    margin-top:12px;
+
+}
+
+#strengthBar{
+
+    width:0;
+
+    height:100%;
+
+    background:#ef4444;
+
+    transition:.3s;
+
+}
+
+#passwordMessage{
+
+    display:block;
+
+    margin-top:8px;
+
+    color:#64748b;
+
+    font-size:14px;
+
+}
+
+/* ==========================================
+   TERMS
+========================================== */
+
+.form-check{
+
+    font-size:15px;
+
+}
+
+.form-check a{
+
+    color:#2563eb;
+
+    text-decoration:none;
+
+    font-weight:600;
+
+}
+
+.form-check a:hover{
+
+    text-decoration:underline;
+
+}
+
+/* ==========================================
+   REGISTER BUTTON
+========================================== */
+
+.register-btn{
+
+    width:100%;
+
+    background:#2563eb;
+
+    color:white;
+
+    border:none;
+
+    padding:16px;
+
+    border-radius:14px;
+
+    font-size:18px;
+
+    font-weight:600;
+
+    transition:.3s;
+
+}
+
+.register-btn:hover{
+
+    background:#1d4ed8;
+
+    transform:translateY(-3px);
+
+    box-shadow:0 10px 25px rgba(37,99,235,.30);
+
+}
+
+/* ==========================================
+   LOGIN LINK
+========================================== */
+
+.login-link{
+
+    text-align:center;
+
+    margin-top:25px;
+
+    color:#64748b;
+
+}
+
+.login-link a{
+
+    text-decoration:none;
+
+    color:#2563eb;
+
+    font-weight:600;
+
+}
+
+.login-link a:hover{
+
+    text-decoration:underline;
+
+}
+
+/* ==========================================
+   DIVIDER
+========================================== */
+
+.divider{
+
+    display:flex;
+
+    align-items:center;
+
+    margin:30px 0;
+
+}
+
+.divider::before,
+
+.divider::after{
+
+    content:"";
+
+    flex:1;
+
+    height:1px;
+
+    background:#d1d5db;
+
+}
+
+.divider span{
+
+    margin:0 15px;
+
+    color:#64748b;
+
+    font-size:14px;
+
+}
+
+/* ==========================================
+   GOOGLE BUTTON
+========================================== */
+
+.google-btn{
+
+    width:100%;
+
+    border:1px solid #d1d5db;
+
+    background:white;
+
+    padding:15px;
+
+    border-radius:14px;
+
+    font-size:16px;
+
+    font-weight:600;
+
+    transition:.3s;
+
+}
+
+.google-btn i{
+
+    color:#ea4335;
+
+    margin-right:10px;
+
+}
+
+.google-btn:hover{
+
+    background:#f8fafc;
+
+}
+
+/* ==========================================
+   UPLOAD LATER
+========================================== */
+
+.later-link{
+
+    margin-top:25px;
+
+    text-align:center;
+
+}
+
+.later-link a{
+
+    text-decoration:none;
+
+    color:#2563eb;
+
+    font-weight:600;
+
+}
+
+.later-link a:hover{
+
+    text-decoration:underline;
+
+}
+
+
+/* ==========================================
+   ANIMATIONS
+========================================== */
+
+@keyframes fadeUp{
+
+    from{
+        opacity:0;
+        transform:translateY(30px);
+    }
+
+    to{
+        opacity:1;
+        transform:translateY(0);
+    }
+
+}
+
+.register-card{
+    animation:fadeUp .7s ease;
+}
+
+.left-panel,
+.right-panel{
+    animation:fadeUp .8s ease;
+}
+
+.feature{
+    transition:.3s;
+}
+
+.feature:hover{
+    transform:translateX(8px);
+}
+
+/* ==========================================
+   INPUT HOVER
+========================================== */
+
+.input-group{
+    transition:.3s;
+}
+
+.input-group:hover{
+    box-shadow:0 10px 25px rgba(37,99,235,.15);
+}
+
+.form-control::placeholder{
+    color:#94a3b8;
+}
+
+/* ==========================================
+   ALERTS
+========================================== */
+
+.alert{
+    border-radius:12px;
+    border:none;
+    font-weight:500;
+}
+
+/* ==========================================
+   SCROLLBAR
+========================================== */
+
+::-webkit-scrollbar{
+    width:8px;
+}
+
+::-webkit-scrollbar-thumb{
+    background:#2563eb;
+    border-radius:20px;
+}
+
+::-webkit-scrollbar-track{
+    background:#f1f5f9;
+}
+
+/* ==========================================
+   RESPONSIVE
+========================================== */
+
+@media(max-width:992px){
+
+    body{
+        padding:20px;
+    }
+
+    .register-card{
+        grid-template-columns:1fr;
+    }
+
+    .left-panel{
+        text-align:center;
+        padding:35px;
+    }
+
+    .features{
+        margin-top:25px;
+    }
+
+    .feature{
+        justify-content:center;
+    }
+
+    .right-panel{
+        padding:35px;
+    }
+
+}
+
+@media(max-width:768px){
+
+    .row>.col-md-6{
+        margin-bottom:15px;
+    }
+
+    .logo h1{
+        font-size:30px;
+    }
+
+    .left-panel h2{
+        font-size:26px;
+    }
+
+    .form-header h2{
+        font-size:30px;
+    }
+
+}
+
+@media(max-width:576px){
+
+    body{
+        padding:10px;
+    }
+
+    .left-panel,
+    .right-panel{
+        padding:25px;
+    }
+
+    .logo i{
+        font-size:45px;
+    }
+
+    .logo h1{
+        font-size:26px;
+    }
+
+    .feature span{
+        font-size:15px;
+    }
+
+    .register-btn,
+    .google-btn{
+        font-size:16px;
+        padding:14px;
+    }
+
+    .input-group-text{
+        width:48px;
+    }
+
+}
+
+/* ==========================================
+   DARK MODE (Optional)
+========================================== */
+
+body.dark{
+    background:linear-gradient(135deg,#0f172a,#1e293b);
+}
+
+body.dark .register-card{
+    background:#1e293b;
+}
+
+body.dark .right-panel{
+    background:#1e293b;
+}
+
+body.dark .form-header h2,
+body.dark .login-link,
+body.dark .later-link,
+body.dark label,
+body.dark p,
+body.dark small{
+    color:#e2e8f0;
+}
+
+body.dark .form-control,
+body.dark .input-group-text{
+    background:#334155;
+    color:white;
+}
+
+body.dark .form-control::placeholder{
+    color:#cbd5e1;
+}
+
+body.dark .google-btn{
+    background:#334155;
+    color:white;
+    border-color:#475569;
+}
+
+body.dark .divider::before,
+body.dark .divider::after{
+    background:#475569;
+}
